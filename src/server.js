@@ -14,7 +14,7 @@ function shutdown(signal) {
   logger.warn({ signal }, 'shutting_down');
   server.close(() => {
     logger.info('http_closed');
-    // TODO: 关闭 Mongo/队列连接等
+    
     process.exit(0);
   });
   setTimeout(() => process.exit(1), 10_000).unref();
