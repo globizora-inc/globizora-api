@@ -30,13 +30,25 @@
 ```
 globizora-api/
 ├─ src/
-│  └─ app.js              # Main API server
-├─ .env.example           # Environment variable template
-├─ .gitignore
-├─ docker-compose.yml     # MongoDB service (optional)
-├─ Dockerfile             # API container build
-├─ package.json
-└─ README.md
+│  ├─ app.js               
+│  ├─ routes/
+│  │  ├─ health.js          # /healthz & /readyz
+│  │  └─ stripe-webhook.js  # /webhooks/stripe
+│  ├─ middleware/
+│  │  ├─ security.js        # helmet/CSP/cors/hpp/xss-clean 
+│  │  ├─ rate-limit.js      # IP + API Key 
+│  │  └─ validate.js        
+│  ├─ utils/
+│  │  ├─ env.js             # envalid env
+│  │  └─ logger.js          # pino & request-id
+│  └─ server.js             
+├─ .github/workflows/ci.yml # Lint+Test+Build
+├─ SECURITY.md
+├─ SUPPORT.md
+├─ Dockerfile
+├─ docker-compose.yml
+└─ .env.example
+
 ```
 
 ---
