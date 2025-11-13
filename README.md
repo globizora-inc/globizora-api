@@ -71,10 +71,26 @@ Edit `.env`:
 ```env
 NODE_ENV=development
 PORT=3000
-MONGO_URI=mongodb://localhost:27017/globizora
+APP_URL=http://localhost:3000
+
+# Database
+MONGO_URL=mongodb://localhost:27017/globizora
+
+# Auth
 JWT_SECRET=your_long_secret_string
+
+# CORS 
+ALLOW_ORIGINS=http://localhost:3000,https://globizora.com
+
+# Stripe
 STRIPE_SECRET_KEY=sk_test_xxx
 STRIPE_WEBHOOK_SECRET=whsec_xxx
+
+# Logs & Rate limits
+LOG_LEVEL=info
+RATE_LIMIT_IP_RPS=10    
+RATE_LIMIT_KEY_RPS=5     
+
 ```
 
 ### 3) Start MongoDB
@@ -89,6 +105,7 @@ docker compose up -d mongo
 npm run dev    # Development with nodemon
 # OR
 node src/app.js
+node src/server.js
 ```
 
 ---
@@ -99,6 +116,11 @@ node src/app.js
 ```bash
 curl -X POST http://localhost:3000/auth/register   -H "Content-Type: application/json"   -d '{ "username":"demo", "email":"demo@example.com", "password":"secret123" }'
 ```
+## API Docs
+{
+  "error": "validation_error",
+  "details": [{ "path": ["email"], "message": "Invalid email" }]
+}
 
 ### Login
 ```bash
