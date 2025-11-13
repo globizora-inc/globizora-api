@@ -117,11 +117,12 @@ node src/server.js
 curl -X POST http://localhost:3000/auth/register   -H "Content-Type: application/json"   -d '{ "username":"demo", "email":"demo@example.com", "password":"secret123" }'
 ```
 ## API Docs
+```bash
 {
   "error": "validation_error",
   "details": [{ "path": ["email"], "message": "Invalid email" }]
 }
-
+```
 ### Login
 ```bash
 curl -X POST http://localhost:3000/auth/login   -H "Content-Type: application/json"   -d '{ "email":"demo@example.com", "password":"secret123" }'
