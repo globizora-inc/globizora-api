@@ -7,7 +7,7 @@
 [![Swagger](https://img.shields.io/badge/Docs-Swagger_UI-green?logo=swagger)](http://localhost:3000/docs)
 
 **Globizora API** is a production-ready **Express.js backend** that provides:
-- 🔑 JWT authentication & API key management  
+- 🔑 111JWT authentication & API key management  
 - 📦 MongoDB integration (Mongoose ODM)  
 - 💳 Stripe Checkout subscription support  
 - 📊 API usage tracking & server metrics  
