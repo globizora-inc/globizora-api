@@ -66,10 +66,14 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@08c6903dc8e0fe910a3f788322edcfe5d509d78a
+        uses: actions/checkout@v4   # ← 不要再用 08c6903... 了
 
       - name: Setup Node
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
       - name: Install deps
         run: npm ci
 
