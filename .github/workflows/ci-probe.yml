@@ -1,4 +1,4 @@
-name: CI - Probe
+name: CI - Probe v3
 
 on:
   workflow_dispatch:
@@ -14,8 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Show Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
       - run: node -v
