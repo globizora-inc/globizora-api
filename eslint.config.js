@@ -1,23 +1,38 @@
-﻿/** @type {import('eslint').Linter.FlatConfig[]} */
-module.exports = [
-  { ignores: ['node_modules', 'coverage', 'dist'] },
+// eslint.config.js  — ESLint v9 flat config
+import js from '@eslint/js';
+import globals from 'globals';
+
+export default [
+  js.configs.recommended,
   {
-    files: ['**/*.js'],
     languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'commonjs',
+      ecmaVersion: 'latest',
+      sourceType: 'module',      // ✅ 关键：按 ESM 解析 import/export
       globals: {
-        global: true, process: true, __dirname: true, __filename: true,
-        module: true, exports: true, require: true, console: true
-      }
+        ...globals.node,         // ✅ 开启 Node 全局（setTimeout、process 等）
+      },
     },
+    ignores: ['dist/**', 'build/**', 'coverage/**', 'node_modules/**'],
     rules: {
-      'no-unused-vars': 'warn',
+      'no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
       'no-undef': 'error',
-      'no-console': 'off',
+      'no-var': 'error',
       'prefer-const': 'warn',
-      'eqeqeq': ['warn','smart']
-    }
+      eqeqeq: ['error', 'smart'],
+      curly: ['error', 'multi-line'],
+      'no-console': 'off'
+    },
   },
-  { files: ['**/*.{test,spec}.js'], rules: { 'no-undef': 'off' } }
+  // 测试文件放宽
+  {
+    files: ['**/*.test.*', '**/__tests__/**'],
+    rules: { 'no-console': 'off' }
+  }
 ];
